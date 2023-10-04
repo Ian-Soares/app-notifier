@@ -3,6 +3,7 @@
 module "rede" {
   source               = "./modules/rede"
   vpc_cidr             = "10.0.0.0/16"
+  vpc_cidr_all = var.vpc_cidr
   vpc_az1              = var.vpc_az1
   vpc_az2              = var.vpc_az2
   vpc_sn_pub_az1_cidr  = var.vpc_sn_pub_az1_cidr
@@ -40,7 +41,6 @@ module "compute" {
   ec2_asg_min_size                = var.ec2_asg_min_size
   ec2_asg_max_size                = var.ec2_asg_max_size
   vpc_cidr                        = var.vpc_cidr
-  vpc_cidr_all = var.vpc_cidr
   vpc_id                          = module.rede.vpc_id
   vpc_sn_pub_az1_id               = module.rede.vpc_sn_pub_az1_id
   vpc_sn_pub_az2_id               = module.rede.vpc_sn_pub_az2_id
