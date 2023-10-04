@@ -74,7 +74,7 @@ resource "aws_wafv2_web_acl" "example" {
   }
 }
 
-resource "aws_wa_regional_web_acl_association" "assoc" {
+resource "aws_wafregional_web_acl_association" "assoc" {
   resource_arn = aws_alb.ec2_lb.arn
   web_acl_arn  = aws_wafv2_web_acl.example.arn
 }
