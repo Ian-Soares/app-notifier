@@ -1,7 +1,7 @@
 # MODULES ORCHESTRATOR
 
 module "network" {
-    source               = "./modules/network"
+    source               = "./modules/rede"
     vpc_cidr             = "10.0.0.0/16"
     vpc_az1              = "${var.vpc_az1}"
     vpc_az2              = "${var.vpc_az2}"
@@ -12,7 +12,7 @@ module "network" {
 }
 
 module "database" {
-    source               = "./modules/database"
+    source               = "./modules/dados"
     rds_identifier       = "${var.rds_identifier}"
     rds_engine_version   = "${var.rds_engine_version}"
     rds_sn_group_name    = "${var.rds_sn_group_name}"
