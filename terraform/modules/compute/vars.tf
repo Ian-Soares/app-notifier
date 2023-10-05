@@ -59,12 +59,12 @@ variable "ec2_lb_tg_port" {
 
 variable "ec2_lb_listener_protocol" {
   type    = string
-  default = "HTTPS"
+  default = "HTTP"
 }
 
 variable "ec2_lb_listener_port" {
   type    = number
-  default = 443
+  default = 80
 }
 
 variable "ec2_lb_listener_certificate_arn" {

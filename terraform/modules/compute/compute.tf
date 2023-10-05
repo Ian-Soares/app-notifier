@@ -58,9 +58,6 @@ resource "aws_lb_listener" "ec2_lb_listener" {
   port              = var.ec2_lb_listener_port
   load_balancer_arn = aws_lb.ec2_lb.arn
 
-  certificate_arn = var.ec2_lb_listener_certificate_arn
-  ssl_policy      = "ELBSecurityPolicy-TLS13-1-2-2021-06"
-
   default_action {
     type             = var.ec2_lb_listener_action_type
     target_group_arn = aws_lb_target_group.ec2_lb_tg.arn

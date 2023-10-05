@@ -41,41 +41,11 @@ resource "aws_db_instance" "rds_dbinstance" {
   db_subnet_group_name            = aws_db_subnet_group.rds_sn_group.name
   parameter_group_name            = aws_db_parameter_group.rds_param_group.name
   vpc_security_group_ids          = ["${var.vpc_sg_priv_id}"]
-  kms_key_id                      = aws_kms_key.rds.arn
   performance_insights_enabled    = true
-  performance_insights_kms_key_id = aws_kms_key.rds.arn
   auto_minor_version_upgrade      = true
   deletion_protection             = true
   enabled_cloudwatch_logs_exports = ["general", "error", "slowquery"]
   tags = {
     Name = "rds-db-instance"
   }
-}
-
-resource "aws_kms_key" "rds" {
-  description             = "KMS key for RDS"
-  deletion_window_in_days = 10
-  tags = {
-    Name = "rds-kms-key"
-  }
-}
-
-resource "aws_kms_key_policy" "example" {
-  key_id = aws_kms_key.rds.id
-  policy = jsonencode({
-    Id = "example"
-    Statement = [
-      {
-        Action = "kms:*"
-        Effect = "Allow"
-        Principal = {
-          AWS = "*"
-        }
-
-        Resource = "*"
-        Sid      = "Enable IAM User Permissions"
-      },
-    ]
-    Version = "2012-10-17"
-  })
 }
