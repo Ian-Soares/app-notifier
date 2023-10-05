@@ -49,6 +49,11 @@ resource "aws_wafv2_web_acl" "example" {
       metric_name                = "friendly-rule-metric-name"
       sampled_requests_enabled   = false
     }
+    visibility_config {
+        cloudwatch_metrics_enabled = false
+        metric_name                = "friendly-rule-metric-name"
+        sampled_requests_enabled   = false
+        }
   }
 
   rule {
@@ -76,5 +81,5 @@ resource "aws_wafv2_web_acl" "example" {
 
 resource "aws_wafregional_web_acl_association" "assoc" {
   resource_arn = aws_lb.ec2_lb
-  web_acl_arn  = aws_wafv2_web_acl.example.arn
+  web_acl_id  = aws_wafv2_web_acl.example.id
 }
