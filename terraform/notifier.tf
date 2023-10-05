@@ -3,7 +3,7 @@
 module "rede" {
   source               = "./modules/rede"
   vpc_cidr             = "10.0.0.0/16"
-  vpc_cidr_all = var.vpc_cidr
+  vpc_cidr_all         = var.vpc_cidr
   vpc_az1              = var.vpc_az1
   vpc_az2              = var.vpc_az2
   vpc_sn_pub_az1_cidr  = var.vpc_sn_pub_az1_cidr

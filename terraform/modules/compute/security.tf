@@ -38,7 +38,7 @@ resource "aws_wafv2_web_acl" "example" {
 
         scope_down_statement {
           geo_match_statement {
-            country_codes = ["US", "NL"]
+            country_codes = ["US", "BR"]
           }
         }
       }
@@ -75,6 +75,6 @@ resource "aws_wafv2_web_acl" "example" {
 }
 
 resource "aws_wafregional_web_acl_association" "assoc" {
-  resource_arn = aws_alb.ec2_lb.arn
+  resource_arn = aws_lb.ec2_lb
   web_acl_arn  = aws_wafv2_web_acl.example.arn
 }

@@ -34,6 +34,7 @@ resource "aws_lb" "ec2_lb" {
   subnets                    = ["${var.vpc_sn_pub_az1_id}", "${var.vpc_sn_pub_az2_id}"]
   security_groups            = ["${var.vpc_sg_pub_id}"]
   enable_deletion_protection = true
+  ssl_policy                 = "ELBSecurityPolicy-2016-08"
   access_logs {
     bucket  = "terraform-logs-ec2-lb"
     prefix  = "ec2-lb"
@@ -86,9 +87,9 @@ resource "aws_autoscaling_group" "ec2_asg" {
     version = "$Latest"
   }
 
-    tag {
-        key                 = "Name"
-        value               = var.ec2_asg_name
-        propagate_at_launch = true
-    }
+  tag {
+    key                 = "Name"
+    value               = var.ec2_asg_name
+    propagate_at_launch = true
+  }
 }
