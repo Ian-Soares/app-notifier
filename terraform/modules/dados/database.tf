@@ -41,7 +41,7 @@ resource "aws_db_instance" "rds_dbinstance" {
   db_subnet_group_name            = aws_db_subnet_group.rds_sn_group.name
   parameter_group_name            = aws_db_parameter_group.rds_param_group.name
   vpc_security_group_ids          = ["${var.vpc_sg_priv_id}"]
-  kms_key_id                      = aws_kms_key.rds.id
+  kms_key_id                      = aws_kms_key.rds.arn
   performance_insights_enabled    = true
   performance_insights_kms_key_id = aws_kms_key.rds.arn
   auto_minor_version_upgrade      = true
