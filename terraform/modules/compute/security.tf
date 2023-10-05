@@ -65,12 +65,12 @@ resource "aws_wafv2_web_acl" "example" {
         vendor_name = "AWS"
       }
     }
-  }
 
-  visibility_config {
-    cloudwatch_metrics_enabled = false
-    metric_name                = "friendly-metric-name"
-    sampled_requests_enabled   = false
+    visibility_config {
+      cloudwatch_metrics_enabled = false
+      metric_name                = "friendly-metric-name"
+      sampled_requests_enabled   = false
+    }
   }
 }
 
