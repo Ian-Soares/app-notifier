@@ -41,7 +41,6 @@ resource "aws_db_instance" "rds_dbinstance" {
   db_subnet_group_name            = aws_db_subnet_group.rds_sn_group.name
   parameter_group_name            = aws_db_parameter_group.rds_param_group.name
   vpc_security_group_ids          = ["${var.vpc_sg_priv_id}"]
-  performance_insights_enabled    = true
   auto_minor_version_upgrade      = true
   deletion_protection             = true
   enabled_cloudwatch_logs_exports = ["general", "error", "slowquery"]
