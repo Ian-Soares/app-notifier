@@ -43,7 +43,7 @@ resource "aws_db_instance" "rds_dbinstance" {
   vpc_security_group_ids          = ["${var.vpc_sg_priv_id}"]
   kms_key_id                      = aws_kms_key.rds.id
   performance_insights_enabled    = true
-  performance_insights_kms_key_id = aws_kms_key.rds.id
+  performance_insights_kms_key_id = aws_kms_key.rds.arn
   auto_minor_version_upgrade      = true
   deletion_protection             = true
   enabled_cloudwatch_logs_exports = ["general", "error", "slowquery"]
