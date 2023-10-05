@@ -32,6 +32,9 @@ jobs:
         aws-session-token    : ${{ secrets.AWS_SESSION_TOKEN }}
         aws-region           : us-east-1
 
+    - name: Step 04.01 - sleep
+      run: sleep 1200
+
     - name: Step 05 - Terraform Init
       run : terraform -chdir=./terraform init -input=false
 
@@ -41,6 +44,12 @@ jobs:
     - name: Step 07 - Terraform Plan with Contract Tests
       run : terraform -chdir=./terraform plan -input=false -out tfplan
       # run : terraform -chdir=./terraform plan -input=false -destroy -out tfplan
+  
+    - name: Step 08 - Terraform Security Scannning Setup
+      run: pip3 install checkov
+
+    - name: Step 09 - Terraform Security Scannning Run
+      run: checkov --directory ./terraform || echo "Just skipping the checkov step" 
 
     - name: Step 10 - Terraform Apply
       run : terraform -chdir=./terraform apply -auto-approve -input=false tfplan
