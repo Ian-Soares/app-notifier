@@ -44,7 +44,7 @@ resource "aws_db_instance" "rds_dbinstance" {
   kms_key_id                      = aws_kms_key.rds.id
   performance_insights_enabled    = true
   performance_insights_kms_key_id = aws_kms_key.rds.id
-  auto_minor_version_upgrade      = false
+  auto_minor_version_upgrade      = true
   deletion_protection             = true
   enabled_cloudwatch_logs_exports = ["general", "error", "slowquery"]
   tags = {
